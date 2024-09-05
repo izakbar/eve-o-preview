@@ -30,6 +30,8 @@ namespace EveOPreview.View
 		bool ShowThumbnailOverlays { get; set; }
 		bool ShowThumbnailFrames { get; set; }
 
+        bool LockThumbnailLocation { get; set; }
+        
 		bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }
 

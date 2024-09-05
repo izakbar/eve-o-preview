@@ -564,8 +564,11 @@ namespace EveOPreview.View
 			}
 			else
 			{
-				this.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
-				this._baseZoomLocation = this.Location;
+				if (!_config.LockThumbnailLocation)
+				{
+					this.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
+					this._baseZoomLocation = this.Location;
+				}
 			}
 		}
 

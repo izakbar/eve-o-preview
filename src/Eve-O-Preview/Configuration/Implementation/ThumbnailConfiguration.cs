@@ -76,6 +76,7 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.ShowThumbnailOverlays = true;
 			this.ShowThumbnailFrames = false;
+			this.LockThumbnailLocation = false;
 
 			this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
@@ -165,9 +166,10 @@ namespace EveOPreview.Configuration.Implementation
 		public ZoomAnchor ThumbnailZoomAnchor { get; set; }
 
 		public bool ShowThumbnailOverlays { get; set; }
-		public bool ShowThumbnailFrames { get; set; }
+        public bool ShowThumbnailFrames { get; set; }
+        public bool LockThumbnailLocation { get; set; }
 
-		public bool EnableActiveClientHighlight { get; set; }
+        public bool EnableActiveClientHighlight { get; set; }
 
 		public Color ActiveClientHighlightColor { get; set; }
 
