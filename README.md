@@ -78,6 +78,7 @@ CCP Grimmi wrote:
 | Opacity | Determines the inactive EVE thumbnails opacity (from almost invisible 20% to 100% solid) |
 | Thumbnail Width | Thumbnails width. Can be set to any value from **100** to **640** points |
 | Thumbnail Height | Thumbnails Height. Can be set to any value from **80** to **400** points |
+| Lock Thumbnail Location | Lock position of thumbnails, preventing misclicks moving your thumbnails |
 
 #### **Zoom** Tab
 | Option | Description |
