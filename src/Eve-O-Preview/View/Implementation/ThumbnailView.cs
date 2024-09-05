@@ -555,16 +555,16 @@ namespace EveOPreview.View
 			int offsetY = mousePosition.Y - this._baseMousePosition.Y;
 			this._baseMousePosition = mousePosition;
 
-			// Left + Right buttons trigger thumbnail resize
-			// Right button only trigger thumbnail movement
-			if (leftButton && rightButton)
+			if (!_config.LockThumbnailLocation)
 			{
-				this.Size = new Size(this.Size.Width + offsetX, this.Size.Height + offsetY);
-				this._baseZoomSize = this.Size;
-			}
-			else
-			{
-				if (!_config.LockThumbnailLocation)
+				// Left + Right buttons trigger thumbnail resize
+				// Right button only trigger thumbnail movement
+				if (leftButton && rightButton)
+				{
+					this.Size = new Size(this.Size.Width + offsetX, this.Size.Height + offsetY);
+					this._baseZoomSize = this.Size;
+				}
+				else
 				{
 					this.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 					this._baseZoomLocation = this.Location;
