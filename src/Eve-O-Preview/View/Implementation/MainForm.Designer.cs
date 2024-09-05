@@ -59,6 +59,7 @@ namespace EveOPreview.View
             System.Windows.Forms.Label DescriptionLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.Label NameLabel;
+            this.MinimizeInactiveClientsA4nimationCheckBox = new System.Windows.Forms.CheckBox();
             this.MinimizeInactiveClientsCheckBox = new System.Windows.Forms.CheckBox();
             this.EnableClientLayoutTrackingCheckBox = new System.Windows.Forms.CheckBox();
             this.HideActiveClientThumbnailCheckBox = new System.Windows.Forms.CheckBox();
@@ -66,6 +67,7 @@ namespace EveOPreview.View
             this.HideThumbnailsOnLostFocusCheckBox = new System.Windows.Forms.CheckBox();
             this.EnablePerClientThumbnailsLayoutsCheckBox = new System.Windows.Forms.CheckBox();
             this.MinimizeToTrayCheckBox = new System.Windows.Forms.CheckBox();
+            this.LockThumbnailLocationCheckBox = new System.Windows.Forms.CheckBox();
             this.ThumbnailsWidthNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.ThumbnailsHeightNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.ThumbnailOpacityTrackBar = new System.Windows.Forms.TrackBar();
@@ -92,7 +94,6 @@ namespace EveOPreview.View
             this.DocumentationLink = new System.Windows.Forms.LinkLabel();
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.LockThumbnailLocationCheckBox = new System.Windows.Forms.CheckBox();
             RestoreWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             TitleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,6 +204,7 @@ namespace EveOPreview.View
             // GeneralSettingsPanel
             // 
             GeneralSettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            GeneralSettingsPanel.Controls.Add(this.MinimizeInactiveClientsA4nimationCheckBox);
             GeneralSettingsPanel.Controls.Add(this.MinimizeInactiveClientsCheckBox);
             GeneralSettingsPanel.Controls.Add(this.EnableClientLayoutTrackingCheckBox);
             GeneralSettingsPanel.Controls.Add(this.HideActiveClientThumbnailCheckBox);
@@ -216,6 +218,20 @@ namespace EveOPreview.View
             GeneralSettingsPanel.Name = "GeneralSettingsPanel";
             GeneralSettingsPanel.Size = new System.Drawing.Size(449, 317);
             GeneralSettingsPanel.TabIndex = 18;
+            // 
+            // MinimizeInactiveClientsA4nimationCheckBox
+            // 
+            this.MinimizeInactiveClientsA4nimationCheckBox.AutoSize = true;
+            this.MinimizeInactiveClientsA4nimationCheckBox.Checked = true;
+            this.MinimizeInactiveClientsA4nimationCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MinimizeInactiveClientsA4nimationCheckBox.Location = new System.Drawing.Point(12, 158);
+            this.MinimizeInactiveClientsA4nimationCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimizeInactiveClientsA4nimationCheckBox.Name = "MinimizeInactiveClientsA4nimationCheckBox";
+            this.MinimizeInactiveClientsA4nimationCheckBox.Size = new System.Drawing.Size(282, 24);
+            this.MinimizeInactiveClientsA4nimationCheckBox.TabIndex = 25;
+            this.MinimizeInactiveClientsA4nimationCheckBox.Text = "Minimize Inactive Clients Animation";
+            this.MinimizeInactiveClientsA4nimationCheckBox.UseVisualStyleBackColor = true;
+            this.MinimizeInactiveClientsA4nimationCheckBox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // MinimizeInactiveClientsCheckBox
             // 
@@ -260,7 +276,7 @@ namespace EveOPreview.View
             this.ShowThumbnailsAlwaysOnTopCheckBox.AutoSize = true;
             this.ShowThumbnailsAlwaysOnTopCheckBox.Checked = true;
             this.ShowThumbnailsAlwaysOnTopCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowThumbnailsAlwaysOnTopCheckBox.Location = new System.Drawing.Point(12, 158);
+            this.ShowThumbnailsAlwaysOnTopCheckBox.Location = new System.Drawing.Point(12, 195);
             this.ShowThumbnailsAlwaysOnTopCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ShowThumbnailsAlwaysOnTopCheckBox.Name = "ShowThumbnailsAlwaysOnTopCheckBox";
             this.ShowThumbnailsAlwaysOnTopCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -275,7 +291,7 @@ namespace EveOPreview.View
             this.HideThumbnailsOnLostFocusCheckBox.AutoSize = true;
             this.HideThumbnailsOnLostFocusCheckBox.Checked = true;
             this.HideThumbnailsOnLostFocusCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HideThumbnailsOnLostFocusCheckBox.Location = new System.Drawing.Point(12, 195);
+            this.HideThumbnailsOnLostFocusCheckBox.Location = new System.Drawing.Point(12, 232);
             this.HideThumbnailsOnLostFocusCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideThumbnailsOnLostFocusCheckBox.Name = "HideThumbnailsOnLostFocusCheckBox";
             this.HideThumbnailsOnLostFocusCheckBox.Size = new System.Drawing.Size(340, 24);
@@ -289,7 +305,7 @@ namespace EveOPreview.View
             this.EnablePerClientThumbnailsLayoutsCheckBox.AutoSize = true;
             this.EnablePerClientThumbnailsLayoutsCheckBox.Checked = true;
             this.EnablePerClientThumbnailsLayoutsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.EnablePerClientThumbnailsLayoutsCheckBox.Location = new System.Drawing.Point(12, 232);
+            this.EnablePerClientThumbnailsLayoutsCheckBox.Location = new System.Drawing.Point(12, 269);
             this.EnablePerClientThumbnailsLayoutsCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EnablePerClientThumbnailsLayoutsCheckBox.Name = "EnablePerClientThumbnailsLayoutsCheckBox";
             this.EnablePerClientThumbnailsLayoutsCheckBox.Size = new System.Drawing.Size(272, 24);
@@ -338,6 +354,20 @@ namespace EveOPreview.View
             ThumbnailSettingsPanel.Name = "ThumbnailSettingsPanel";
             ThumbnailSettingsPanel.Size = new System.Drawing.Size(449, 317);
             ThumbnailSettingsPanel.TabIndex = 19;
+            // 
+            // LockThumbnailLocationCheckBox
+            // 
+            this.LockThumbnailLocationCheckBox.AutoSize = true;
+            this.LockThumbnailLocationCheckBox.Checked = true;
+            this.LockThumbnailLocationCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LockThumbnailLocationCheckBox.Location = new System.Drawing.Point(12, 132);
+            this.LockThumbnailLocationCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LockThumbnailLocationCheckBox.Name = "LockThumbnailLocationCheckBox";
+            this.LockThumbnailLocationCheckBox.Size = new System.Drawing.Size(211, 24);
+            this.LockThumbnailLocationCheckBox.TabIndex = 25;
+            this.LockThumbnailLocationCheckBox.Text = "Lock Thumbnail Location";
+            this.LockThumbnailLocationCheckBox.UseVisualStyleBackColor = true;
+            this.LockThumbnailLocationCheckBox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // HeigthLabel
             // 
@@ -905,20 +935,6 @@ namespace EveOPreview.View
             this.TrayMenu.Name = "contextMenuStrip1";
             this.TrayMenu.Size = new System.Drawing.Size(200, 106);
             // 
-            // LockThumbnailLocationCheckBox
-            // 
-            this.LockThumbnailLocationCheckBox.AutoSize = true;
-            this.LockThumbnailLocationCheckBox.Checked = true;
-            this.LockThumbnailLocationCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LockThumbnailLocationCheckBox.Location = new System.Drawing.Point(12, 132);
-            this.LockThumbnailLocationCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.LockThumbnailLocationCheckBox.Name = "LockThumbnailLocationCheckBox";
-            this.LockThumbnailLocationCheckBox.Size = new System.Drawing.Size(211, 24);
-            this.LockThumbnailLocationCheckBox.TabIndex = 25;
-            this.LockThumbnailLocationCheckBox.Text = "Lock Thumbnail Location";
-            this.LockThumbnailLocationCheckBox.UseVisualStyleBackColor = true;
-            this.LockThumbnailLocationCheckBox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1001,5 +1017,6 @@ namespace EveOPreview.View
 		private Label VersionLabel;
 		private CheckBox MinimizeInactiveClientsCheckBox;
         private CheckBox LockThumbnailLocationCheckBox;
+        private CheckBox MinimizeInactiveClientsA4nimationCheckBox;
     }
 }
