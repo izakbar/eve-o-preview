@@ -102,7 +102,7 @@ namespace EveOPreview.Services
 		{
 			this.GetActiveClient()?.ClearBorder();
 
-			this._windowManager.ActivateWindow(newClient.Key);
+			this._windowManager.ActivateWindow(newClient.Key, this._configuration.MinimizeInactiveClientsAnimation);
 			this.SwitchActiveClient(newClient.Key, newClient.Value.Title);
 
 			newClient.Value.SetHighlight();
@@ -483,10 +483,9 @@ namespace EveOPreview.Services
 			// Minimize the currently active client if needed
 			if (this._configuration.MinimizeInactiveClients && !this._configuration.IsPriorityClient(this._activeClient.Title))
 			{
-				this._windowManager.MinimizeWindow(this._activeClient.Handle, false);
+				this._windowManager.MinimizeWindow(this._activeClient.Handle, this._configuration.MinimizeInactiveClientsAnimation);
 			}
-
-			this._activeClient = (foregroundClientHandle, foregroundClientTitle);
+            this._activeClient = (foregroundClientHandle, foregroundClientTitle);
 		}
 
 		private void ThumbnailViewFocused(IntPtr id)
@@ -534,7 +533,7 @@ namespace EveOPreview.Services
 
 			Task.Run(() =>
 				{
-					this._windowManager.ActivateWindow(view.Id);
+					this._windowManager.ActivateWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
 				})
 				.ContinueWith((task) =>
 				{
@@ -549,7 +548,7 @@ namespace EveOPreview.Services
 		{
 			if (switchOut)
 			{
-				this._windowManager.ActivateWindow(this._externalApplication);
+				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.MinimizeInactiveClientsAnimation);
 			}
 			else
 			{
@@ -558,7 +557,7 @@ namespace EveOPreview.Services
 					return;
 				}
 
-				this._windowManager.MinimizeWindow(view.Id, true);
+				this._windowManager.MinimizeWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
 				this.RefreshThumbnails();
 			}
 		}
@@ -740,7 +739,7 @@ namespace EveOPreview.Services
 
 			if (clientLayout.IsMaximized)
 			{
-				this._windowManager.MaximizeWindow(clientHandle);
+				this._windowManager.MaximizeWindow(clientHandle, this._configuration.MinimizeInactiveClientsAnimation);
 			}
 			else
 			{

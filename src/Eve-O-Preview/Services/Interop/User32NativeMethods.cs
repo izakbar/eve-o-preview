@@ -5,6 +5,10 @@ namespace EveOPreview.Services.Interop
 {
 	static class User32NativeMethods
 	{
+
+		public const uint SPI_SETANIMATION = 0x0049;
+		public const uint SPI_GETANIMATION = 0x0048;
+
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetForegroundWindow();
 
@@ -60,5 +64,9 @@ namespace EveOPreview.Services.Interop
 
 		[DllImport("user32.dll")]
 		public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hdc);
-	}
+
+        [DllImport("user32.dll")]
+		public static extern long SystemParametersInfo(long uAction, int lpvParam, ref ANIMATIONINFO uParam, int fuWinIni);
+
+    }
 }

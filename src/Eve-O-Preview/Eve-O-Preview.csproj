@@ -152,6 +152,7 @@
     <Compile Include="Services\Implementation\DwmThumbnail.cs" />
     <Compile Include="Services\Interface\IDwmThumbnail.cs" />
     <Compile Include="Services\Interface\InteropConstants.cs" />
+    <Compile Include="Services\Interop\ANIMATIONINFO.cs" />
     <Compile Include="Services\Interop\DWM_BLURBEHIND.cs" />
     <Compile Include="Services\Interop\DWM_THUMBNAIL_PROPERTIES.cs" />
     <Compile Include="Services\Interop\DWM_TNP_CONSTANTS.cs" />

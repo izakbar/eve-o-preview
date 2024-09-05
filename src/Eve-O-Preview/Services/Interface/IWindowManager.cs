@@ -8,10 +8,10 @@ namespace EveOPreview.Services
 		bool IsCompositionEnabled { get; }
 
 		IntPtr GetForegroundWindowHandle();
-		void ActivateWindow(IntPtr handle);
+		void ActivateWindow(IntPtr handle, bool enableAnimation);
 		void MinimizeWindow(IntPtr handle, bool enableAnimation);
 		void MoveWindow(IntPtr handle, int left, int top, int width, int height);
-		void MaximizeWindow(IntPtr handle);
+		void MaximizeWindow(IntPtr handle, bool enableAnimation);
 		(int Left, int Top, int Right, int Bottom) GetWindowPosition(IntPtr handle);
 		bool IsWindowMaximized(IntPtr handle);
 		bool IsWindowMinimized(IntPtr handle);
