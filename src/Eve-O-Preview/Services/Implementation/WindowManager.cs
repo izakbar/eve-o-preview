@@ -29,9 +29,12 @@ namespace EveOPreview.Services.Implementation
 
 		public void ActivateWindow(IntPtr handle, bool enableAnimation)
 		{
-			int style = User32NativeMethods.GetWindowLong(handle, InteropConstants.GWL_STYLE);
 
-			if ((style & InteropConstants.WS_MINIMIZE) == InteropConstants.WS_MINIMIZE)
+            User32NativeMethods.SetForegroundWindow(handle);
+            User32NativeMethods.SetFocus(handle);
+
+            int style = User32NativeMethods.GetWindowLong(handle, InteropConstants.GWL_STYLE);
+            if ((style & InteropConstants.WS_MINIMIZE) == InteropConstants.WS_MINIMIZE)
 			{
                 if (enableAnimation)
                 {
@@ -57,10 +60,6 @@ namespace EveOPreview.Services.Implementation
                     ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
                 }
             }
-
-            User32NativeMethods.SetForegroundWindow(handle);
-            User32NativeMethods.SetFocus(handle);
-
         }
 
         public void MinimizeWindow(IntPtr handle, bool enableAnimation)
