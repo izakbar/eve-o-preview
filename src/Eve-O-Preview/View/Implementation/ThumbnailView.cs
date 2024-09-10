@@ -125,6 +125,8 @@ namespace EveOPreview.View
 
 		public Action<IntPtr, bool> ThumbnailDeactivated { get; set; }
 
+		private bool WindowMoved = false;
+
 		public void SetDefaultBorderColor()
 		{
 			this._myBorderColor = new Lazy<Color>(() =>
@@ -507,8 +509,20 @@ namespace EveOPreview.View
 			if (e.Button == MouseButtons.Right)
 			{
 				this.ExitCustomMouseMode();
-			}
-		}
+
+                // snap to grid on release of mouse (if mvoed)
+                if (_config.ThumbnailSnapToGrid && this.WindowMoved)
+                {
+                    var x = (int)Math.Round((double)this.Location.X / (double)_config.ThumbnailSnapToGridSizeX) * _config.ThumbnailSnapToGridSizeX;
+                    var y = (int)Math.Round((double)this.Location.Y / (double)_config.ThumbnailSnapToGridSizeY) * _config.ThumbnailSnapToGridSizeY;
+                    this.Location = new Point(x, y);
+                    this._baseZoomLocation = this.Location;
+
+                    this.WindowMoved = false;
+                }
+
+            }
+        }
 
 		private void HotkeyPressed_Handler(object sender, HandledEventArgs e)
 		{
@@ -566,8 +580,9 @@ namespace EveOPreview.View
 				}
 				else
 				{
-					this.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
+                    this.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 					this._baseZoomLocation = this.Location;
+					this.WindowMoved = true;
 				}
 			}
 		}
@@ -575,11 +590,11 @@ namespace EveOPreview.View
 		private void ExitCustomMouseMode()
 		{
 			this._isCustomMouseModeActive = false;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Custom GUI events
-		protected virtual void MouseDownEventHandler(MouseButtons mouseButtons, Keys modifierKeys)
+        #region Custom GUI events
+        protected virtual void MouseDownEventHandler(MouseButtons mouseButtons, Keys modifierKeys)
 		{
 			switch (mouseButtons)
 			{

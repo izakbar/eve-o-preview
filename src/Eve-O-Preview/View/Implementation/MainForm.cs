@@ -170,6 +170,21 @@ namespace EveOPreview.View
             get => this.LockThumbnailLocationCheckBox.Checked;
             set => this.LockThumbnailLocationCheckBox.Checked = value;
         }
+        public bool ThumbnailSnapToGrid
+        {
+            get => this.ThumbnailSnapToGridCheckbox.Checked;
+            set => this.ThumbnailSnapToGridCheckbox.Checked = value;
+        }
+        public int ThumbnailSnapToGridSizeX
+        {
+            get => (int)ThumbnailSnapToGridSizeXNumericEdit.Value;
+            set => ThumbnailSnapToGridSizeXNumericEdit.Value = value;
+        }
+        public int ThumbnailSnapToGridSizeY
+        {
+            get => (int)ThumbnailSnapToGridSizeYNumericEdit.Value;
+            set => ThumbnailSnapToGridSizeYNumericEdit.Value = value;
+        }
 
         public bool EnableActiveClientHighlight
 		{

@@ -122,6 +122,9 @@ namespace EveOPreview.Presenters
 			this.View.ShowThumbnailOverlays = this._configuration.ShowThumbnailOverlays;
             this.View.ShowThumbnailFrames = this._configuration.ShowThumbnailFrames;
             this.View.LockThumbnailLocation = this._configuration.LockThumbnailLocation;
+			this.View.ThumbnailSnapToGrid = this._configuration.ThumbnailSnapToGrid;
+            this.View.ThumbnailSnapToGridSizeX = this._configuration.ThumbnailSnapToGridSizeX;
+            this.View.ThumbnailSnapToGridSizeY = this._configuration.ThumbnailSnapToGridSizeY;
             this.View.EnableActiveClientHighlight = this._configuration.EnableActiveClientHighlight;
 			this.View.ActiveClientHighlightColor = this._configuration.ActiveClientHighlightColor;
 		}
@@ -154,6 +157,9 @@ namespace EveOPreview.Presenters
 			}
 
 			this._configuration.LockThumbnailLocation = this.View.LockThumbnailLocation;
+			this._configuration.ThumbnailSnapToGrid = this.View.ThumbnailSnapToGrid;
+            this._configuration.ThumbnailSnapToGridSizeX = this.View.ThumbnailSnapToGridSizeX;
+            this._configuration.ThumbnailSnapToGridSizeY = this.View.ThumbnailSnapToGridSizeY;
 
             this._configuration.EnableActiveClientHighlight = this.View.EnableActiveClientHighlight;
 			this._configuration.ActiveClientHighlightColor = this.View.ActiveClientHighlightColor;
