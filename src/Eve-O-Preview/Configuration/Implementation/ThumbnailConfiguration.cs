@@ -79,7 +79,11 @@ namespace EveOPreview.Configuration.Implementation
 			this.ShowThumbnailFrames = false;
 			this.LockThumbnailLocation = false;
 
-			this.EnableActiveClientHighlight = false;
+			this.ThumbnailSnapToGrid = true;
+            this.ThumbnailSnapToGridSizeX = 100;
+            this.ThumbnailSnapToGridSizeY = 50;
+
+            this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
 			this.ActiveClientHighlightThickness = 3;
 
@@ -170,6 +174,9 @@ namespace EveOPreview.Configuration.Implementation
 		public bool ShowThumbnailOverlays { get; set; }
         public bool ShowThumbnailFrames { get; set; }
         public bool LockThumbnailLocation { get; set; }
+        public bool ThumbnailSnapToGrid { get; set; }
+        public int ThumbnailSnapToGridSizeX { get; set; }
+        public int ThumbnailSnapToGridSizeY { get; set; }
 
         public bool EnableActiveClientHighlight { get; set; }
 
