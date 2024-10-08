@@ -97,6 +97,9 @@ CCP Grimmi wrote:
 | Show frames | Determines whether thumbnails should be displays with window caption and borders |
 | Highlight active client | Determines whether the thumbnail of the active EVE client should be highlighted with a bright border |
 | Color | Color used to highlight the active client's thumbnail in case the corresponding option is set |
+| Label Size | The fontsize of the overlay label (character name) |
+| Color | The color of the font for the overlay label |
+| Position | The position of the overlay label in the thumbnail |
 
 #### **Active Clients** Tab
 | Option | Description |

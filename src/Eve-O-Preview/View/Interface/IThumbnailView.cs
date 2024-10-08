@@ -19,8 +19,9 @@ namespace EveOPreview.View
 
 		void SetSizeLimitations(Size minimumSize, Size maximumSize);
 		void SetOpacity(double opacity);
-		void SetFrames(bool enable);
-		void SetTopMost(bool enableTopmost);
+        void SetFrames(bool enable);
+        void SetOverlayLabel();
+        void SetTopMost(bool enableTopmost);
 		void SetHighlight();
 		void SetHighlight(bool enabled, int width);
 

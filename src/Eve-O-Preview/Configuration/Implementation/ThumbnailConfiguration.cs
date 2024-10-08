@@ -74,6 +74,7 @@ namespace EveOPreview.Configuration.Implementation
 			this.ThumbnailZoomEnabled = false;
 			this.ThumbnailZoomFactor = 2;
 			this.ThumbnailZoomAnchor = ZoomAnchor.NW;
+			this.OverlayLabelAnchor = ZoomAnchor.NW; 
 
 			this.ShowThumbnailOverlays = true;
 			this.ShowThumbnailFrames = false;
@@ -84,10 +85,13 @@ namespace EveOPreview.Configuration.Implementation
             this.ThumbnailSnapToGridSizeY = 50;
 
             this.EnableActiveClientHighlight = false;
-			this.ActiveClientHighlightColor = Color.GreenYellow;
-			this.ActiveClientHighlightThickness = 3;
+            this.ActiveClientHighlightColor = Color.GreenYellow;
+            this.ActiveClientHighlightThickness = 3;
 
-			this.LoginThumbnailLocation = new Point(5, 5);
+            this.OverlayLabelColor = Color.Orange;
+            this.OverlayLabelSize = 10;
+
+            this.LoginThumbnailLocation = new Point(5, 5);
 		}
 
 
@@ -169,9 +173,10 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("EnableThumbnailZoom")]
 		public bool ThumbnailZoomEnabled { get; set; }
 		public int ThumbnailZoomFactor { get; set; }
-		public ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        public ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        public ZoomAnchor OverlayLabelAnchor { get; set; }
 
-		public bool ShowThumbnailOverlays { get; set; }
+        public bool ShowThumbnailOverlays { get; set; }
         public bool ShowThumbnailFrames { get; set; }
         public bool LockThumbnailLocation { get; set; }
         public bool ThumbnailSnapToGrid { get; set; }
@@ -180,9 +185,10 @@ namespace EveOPreview.Configuration.Implementation
 
         public bool EnableActiveClientHighlight { get; set; }
 
-		public Color ActiveClientHighlightColor { get; set; }
-
-		public int ActiveClientHighlightThickness { get; set; }
+        public Color ActiveClientHighlightColor { get; set; }
+        public Color OverlayLabelColor { get; set; }
+		public int OverlayLabelSize { get; set; }
+        public int ActiveClientHighlightThickness { get; set; }
 
 		[JsonProperty("LoginThumbnailLocation")]
 		public Point LoginThumbnailLocation { get; set; }

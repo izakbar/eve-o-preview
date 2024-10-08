@@ -10,7 +10,7 @@ namespace EveOPreview.Services
 		void UpdateThumbnailsSize();
 		void UpdateThumbnailFrames();
 
-		IThumbnailView GetClientByTitle(string title);
+        IThumbnailView GetClientByTitle(string title);
 		IThumbnailView GetClientByPointer(System.IntPtr ptr);
 		IThumbnailView GetActiveClient();
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using EveOPreview.Configuration;
 using EveOPreview.Services;
 
 namespace EveOPreview.View
@@ -28,10 +29,70 @@ namespace EveOPreview.View
 			this.OverlayLabel.Text = label;
 		}
 
-		public void EnableOverlayLabel(bool enable)
+		public void SetPropertiesOverlayLabel(int size, System.Drawing.Color c, ZoomAnchor anchor)
+		{
+			if (this.OverlayLabel.Font.Size != size)
+			{
+				this.OverlayLabel.Font = new System.Drawing.Font(this.OverlayLabel.Font.FontFamily, size);
+			}
+			this.OverlayLabel.ForeColor = c;
+
+			int margin = 5;
+            switch (anchor)
+            {
+                case ZoomAnchor.NW:
+                    this.OverlayLabel.Left = margin;
+                    this.OverlayLabel.Top = margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+                    break;
+                case ZoomAnchor.N:
+                    this.OverlayLabel.Left = (this.Width / 2) - ( this.OverlayLabel.Width / 2);
+                    this.OverlayLabel.Top = margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+                    break;
+                case ZoomAnchor.NE:
+                    this.OverlayLabel.Left = this.Width  - this.OverlayLabel.Width - margin;
+                    this.OverlayLabel.Top = margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+                    break;
+                case ZoomAnchor.W:
+                    this.OverlayLabel.Left = margin;
+                    this.OverlayLabel.Top = (this.Height / 2) - (this.OverlayLabel.Height / 2);
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                    break;
+                case ZoomAnchor.C:
+                    this.OverlayLabel.Left = (this.Width / 2) - (this.OverlayLabel.Width / 2);
+                    this.OverlayLabel.Top = (this.Height / 2) - (this.OverlayLabel.Height / 2);
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                    break;
+                case ZoomAnchor.E:
+                    this.OverlayLabel.Left = this.Width - this.OverlayLabel.Width - margin;
+                    this.OverlayLabel.Top = (this.Height / 2) - (this.OverlayLabel.Height / 2);
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                    break;
+                case ZoomAnchor.SW:
+                    this.OverlayLabel.Left = margin;
+                    this.OverlayLabel.Top = this.Height - this.OverlayLabel.Height - margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+                    break;
+                case ZoomAnchor.S:
+                    this.OverlayLabel.Left = (this.Width / 2) - (this.OverlayLabel.Width / 2);
+                    this.OverlayLabel.Top = this.Height - this.OverlayLabel.Height - margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+                    break;
+                case ZoomAnchor.SE:
+                    this.OverlayLabel.Left = this.Width - this.OverlayLabel.Width - margin;
+                    this.OverlayLabel.Top = this.Height - this.OverlayLabel.Height - margin;
+                    this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+                    break;
+            }
+
+
+        }
+        public void EnableOverlayLabel(bool enable)
 		{
 			this.OverlayLabel.Visible = enable;
-		}
+        }
 
 		protected override CreateParams CreateParams
 		{

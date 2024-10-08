@@ -462,7 +462,7 @@ namespace EveOPreview.Services
 			this.EnableViewEvents();
 		}
 
-		private void EnableViewEvents()
+        private void EnableViewEvents()
 		{
 			this._ignoreViewEvents = false;
 		}

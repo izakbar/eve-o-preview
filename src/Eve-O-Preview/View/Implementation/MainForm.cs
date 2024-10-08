@@ -9,9 +9,11 @@ namespace EveOPreview.View
 	{
 		#region Private fields
 		private readonly ApplicationContext _context;
-		private readonly Dictionary<ViewZoomAnchor, RadioButton> _zoomAnchorMap;
-		private ViewZoomAnchor _cachedThumbnailZoomAnchor;
-		private bool _suppressEvents;
+        private readonly Dictionary<ViewZoomAnchor, RadioButton> _zoomAnchorMap;
+        private readonly Dictionary<ViewZoomAnchor, RadioButton> _overlayLabelMap;
+        private ViewZoomAnchor _cachedThumbnailZoomAnchor;
+        private ViewZoomAnchor _cachedOverlayLabelAnchor;
+        private bool _suppressEvents;
 		private Size _minimumSize;
 		private Size _maximumSize;
 		#endregion
@@ -19,8 +21,9 @@ namespace EveOPreview.View
 		public MainForm(ApplicationContext context)
 		{
 			this._context = context;
-			this._zoomAnchorMap = new Dictionary<ViewZoomAnchor, RadioButton>();
-			this._cachedThumbnailZoomAnchor = ViewZoomAnchor.NW;
+            this._zoomAnchorMap = new Dictionary<ViewZoomAnchor, RadioButton>();
+            this._overlayLabelMap = new Dictionary<ViewZoomAnchor, RadioButton>();
+            this._cachedThumbnailZoomAnchor = ViewZoomAnchor.NW;
 			this._suppressEvents = false;
 			this._minimumSize = new Size(80, 60);
 			this._maximumSize = new Size(80, 60);
@@ -29,10 +32,11 @@ namespace EveOPreview.View
 
 			this.ThumbnailsList.DisplayMember = "Title";
 
-			this.InitZoomAnchorMap();
-		}
+            this.InitZoomAnchorMap();
+            this.InitOverlayLabelMap();
+        }
 
-		public bool MinimizeToTray
+        public bool MinimizeToTray
 		{
 			get => this.MinimizeToTrayCheckBox.Checked;
 			set => this.MinimizeToTrayCheckBox.Checked = value;
@@ -154,7 +158,37 @@ namespace EveOPreview.View
 			}
 		}
 
-		public bool ShowThumbnailOverlays
+        public ViewZoomAnchor OverlayLabelAnchor
+        {
+            get
+            {
+                if (this._overlayLabelMap[this._cachedOverlayLabelAnchor].Checked)
+                {
+                    return this._cachedOverlayLabelAnchor;
+                }
+
+                foreach (KeyValuePair<ViewZoomAnchor, RadioButton> valuePair in this._overlayLabelMap)
+                {
+                    if (!valuePair.Value.Checked)
+                    {
+                        continue;
+                    }
+
+                    this._cachedOverlayLabelAnchor = valuePair.Key;
+                    return this._cachedOverlayLabelAnchor;
+                }
+
+                // Default value
+                return ViewZoomAnchor.NW;
+            }
+            set
+            {
+                this._cachedOverlayLabelAnchor = value;
+                this._overlayLabelMap[this._cachedOverlayLabelAnchor].Checked = true;
+            }
+        }
+
+        public bool ShowThumbnailOverlays
 		{
 			get => this.ShowThumbnailOverlaysCheckBox.Checked;
 			set => this.ShowThumbnailOverlaysCheckBox.Checked = value;
@@ -203,7 +237,27 @@ namespace EveOPreview.View
 		}
 		private Color _activeClientHighlightColor;
 
-		public new void Show()
+        public Color OverlayLabelColor
+        {
+            get => this._OverlayLabelColor;
+            set
+            {
+                this._OverlayLabelColor = value;
+                this.OverlayLabelColorButton.BackColor = value;
+            }
+        }
+        private Color _OverlayLabelColor;
+
+		public int OverlayLabelSize
+		{
+            get => (int)this.OverlayLabelSizeNumericEdit.Value;
+            set
+            {
+                this.OverlayLabelSizeNumericEdit.Value = value;
+            }
+        }
+
+        public new void Show()
 		{
 			// Registers the current instance as the application's Main Form
 			this._context.MainForm = this;
@@ -336,8 +390,7 @@ namespace EveOPreview.View
 
 			this.ThumbnailsSizeChanged?.Invoke();
 		}
-
-		private void ActiveClientHighlightColorButton_Click(object sender, EventArgs e)
+        private void ActiveClientHighlightColorButton_Click(object sender, EventArgs e)
 		{
 			using (ColorDialog dialog = new ColorDialog())
 			{
@@ -354,6 +407,23 @@ namespace EveOPreview.View
 			this.OptionChanged_Handler(sender, e);
 		}
 
+        private void OverlayLabelColorButton_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog dialog = new ColorDialog())
+            {
+                dialog.Color = this.OverlayLabelColor;
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                this.OverlayLabelColor = dialog.Color;
+            }
+
+            this.OptionChanged_Handler(sender, e);
+        }
+        
 		private void ThumbnailsList_ItemCheck_Handler(object sender, ItemCheckEventArgs e)
 		{
 			if (!(this.ThumbnailsList.Items[e.Index] is IThumbnailDescription selectedItem))
@@ -416,5 +486,17 @@ namespace EveOPreview.View
 			this._zoomAnchorMap[ViewZoomAnchor.S] = this.ZoomAanchorSRadioButton;
 			this._zoomAnchorMap[ViewZoomAnchor.SE] = this.ZoomAanchorSERadioButton;
 		}
-	}
+        private void InitOverlayLabelMap()
+        {
+            this._overlayLabelMap[ViewZoomAnchor.NW] = this.OverlayLabelNWRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.N] = this.OverlayLabelNRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.NE] = this.OverlayLabelNERadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.W] = this.OverlayLabelWRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.C] = this.OverlayLabelCRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.E] = this.OverlayLabelERadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.SW] = this.OverlayLabelSWRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.S] = this.OverlayLabelSRadioButton;
+            this._overlayLabelMap[ViewZoomAnchor.SE] = this.OverlayLabelSERadioButton;
+        }
+    }
 }

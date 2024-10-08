@@ -41,9 +41,10 @@ namespace EveOPreview.Configuration
 
 		bool ThumbnailZoomEnabled { get; set; }
 		int ThumbnailZoomFactor { get; set; }
-		ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        ZoomAnchor OverlayLabelAnchor { get; set; }
 
-		bool ShowThumbnailOverlays { get; set; }
+        bool ShowThumbnailOverlays { get; set; }
         bool ShowThumbnailFrames { get; set; }
         bool LockThumbnailLocation { get; set; }
         bool ThumbnailSnapToGrid { get; set; }
@@ -51,10 +52,12 @@ namespace EveOPreview.Configuration
         int ThumbnailSnapToGridSizeY { get; set; }
 
         bool EnableActiveClientHighlight { get; set; }
-		Color ActiveClientHighlightColor { get; set; }
-		int ActiveClientHighlightThickness { get; set; }
+        Color ActiveClientHighlightColor { get; set; }
+        int ActiveClientHighlightThickness { get; set; }
+        Color OverlayLabelColor { get; set; }
+        int OverlayLabelSize { get; set; }
 
-		Point LoginThumbnailLocation { get; set; }
+        Point LoginThumbnailLocation { get; set; }
 
 		Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation);
 		void SetThumbnailLocation(string currentClient, string activeClient, Point location);

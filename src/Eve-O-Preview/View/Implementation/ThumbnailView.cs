@@ -89,7 +89,8 @@ namespace EveOPreview.View
 			{
 				this.Text = value;
 				this._overlay.SetOverlayLabel(value.Replace("EVE - ", ""));
-				SetDefaultBorderColor();
+				this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
+                SetDefaultBorderColor();
 			}
 		}
 
@@ -233,8 +234,11 @@ namespace EveOPreview.View
 
 			this.FormBorderStyle = style;
 		}
+        public void SetOverlayLabel()
+        {
+        }
 
-		public void SetTopMost(bool enableTopmost)
+        public void SetTopMost(bool enableTopmost)
 		{
 			if (this._isTopMost == enableTopmost)
 			{
@@ -432,12 +436,15 @@ namespace EveOPreview.View
 			Size overlaySize = this.ClientSize;
 			Point overlayLocation = this.Location;
 
-			int borderWidth = (this.Size.Width - this.ClientSize.Width) / 2;
-			overlayLocation.X += borderWidth;
-			overlayLocation.Y += (this.Size.Height - this.ClientSize.Height) - borderWidth;
+//			int borderWidth = (this.Size.Width - this.ClientSize.Width) / 2;
+//			overlayLocation.X += borderWidth;
+//			overlayLocation.Y += (this.Size.Height - this.ClientSize.Height) - borderWidth;
 
 			this._isLocationChanged = false;
 			this._overlay.Size = overlaySize;
+
+			this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
+
 			this._overlay.Location = overlayLocation;
 			this._overlay.Refresh();
 		}

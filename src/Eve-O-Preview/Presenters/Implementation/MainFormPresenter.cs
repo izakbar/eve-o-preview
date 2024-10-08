@@ -117,19 +117,23 @@ namespace EveOPreview.Presenters
 
 			this.View.EnableThumbnailZoom = this._configuration.ThumbnailZoomEnabled;
 			this.View.ThumbnailZoomFactor = this._configuration.ThumbnailZoomFactor;
-			this.View.ThumbnailZoomAnchor = ViewZoomAnchorConverter.Convert(this._configuration.ThumbnailZoomAnchor);
+            this.View.ThumbnailZoomAnchor = ViewZoomAnchorConverter.Convert(this._configuration.ThumbnailZoomAnchor);
+            this.View.OverlayLabelAnchor = ViewZoomAnchorConverter.Convert(this._configuration.OverlayLabelAnchor);
 
-			this.View.ShowThumbnailOverlays = this._configuration.ShowThumbnailOverlays;
+            this.View.ShowThumbnailOverlays = this._configuration.ShowThumbnailOverlays;
             this.View.ShowThumbnailFrames = this._configuration.ShowThumbnailFrames;
             this.View.LockThumbnailLocation = this._configuration.LockThumbnailLocation;
 			this.View.ThumbnailSnapToGrid = this._configuration.ThumbnailSnapToGrid;
             this.View.ThumbnailSnapToGridSizeX = this._configuration.ThumbnailSnapToGridSizeX;
             this.View.ThumbnailSnapToGridSizeY = this._configuration.ThumbnailSnapToGridSizeY;
             this.View.EnableActiveClientHighlight = this._configuration.EnableActiveClientHighlight;
-			this.View.ActiveClientHighlightColor = this._configuration.ActiveClientHighlightColor;
-		}
+            this.View.ActiveClientHighlightColor = this._configuration.ActiveClientHighlightColor;
+        
+			this.View.OverlayLabelColor = this._configuration.OverlayLabelColor;
+			this.View.OverlayLabelSize = this._configuration.OverlayLabelSize;
+        }
 
-		private async void SaveApplicationSettings()
+        private async void SaveApplicationSettings()
 		{
 			this._configuration.MinimizeToTray = this.View.MinimizeToTray;
 
@@ -147,9 +151,10 @@ namespace EveOPreview.Presenters
 
 			this._configuration.ThumbnailZoomEnabled = this.View.EnableThumbnailZoom;
 			this._configuration.ThumbnailZoomFactor = this.View.ThumbnailZoomFactor;
-			this._configuration.ThumbnailZoomAnchor = ViewZoomAnchorConverter.Convert(this.View.ThumbnailZoomAnchor);
+            this._configuration.ThumbnailZoomAnchor = ViewZoomAnchorConverter.Convert(this.View.ThumbnailZoomAnchor);
+            this._configuration.OverlayLabelAnchor = ViewZoomAnchorConverter.Convert(this.View.OverlayLabelAnchor);
 
-			this._configuration.ShowThumbnailOverlays = this.View.ShowThumbnailOverlays;
+            this._configuration.ShowThumbnailOverlays = this.View.ShowThumbnailOverlays;
 			if (this._configuration.ShowThumbnailFrames != this.View.ShowThumbnailFrames)
 			{
 				this._configuration.ShowThumbnailFrames = this.View.ShowThumbnailFrames;
@@ -162,9 +167,12 @@ namespace EveOPreview.Presenters
             this._configuration.ThumbnailSnapToGridSizeY = this.View.ThumbnailSnapToGridSizeY;
 
             this._configuration.EnableActiveClientHighlight = this.View.EnableActiveClientHighlight;
-			this._configuration.ActiveClientHighlightColor = this.View.ActiveClientHighlightColor;
+            this._configuration.ActiveClientHighlightColor = this.View.ActiveClientHighlightColor;
 
-			this._configurationStorage.Save();
+            this._configuration.OverlayLabelColor = this.View.OverlayLabelColor;
+            this._configuration.OverlayLabelSize = this.View.OverlayLabelSize;
+
+            this._configurationStorage.Save();
 
 			this.View.RefreshZoomSettings();
 
