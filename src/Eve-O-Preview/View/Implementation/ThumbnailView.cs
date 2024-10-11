@@ -436,9 +436,9 @@ namespace EveOPreview.View
 			Size overlaySize = this.ClientSize;
 			Point overlayLocation = this.Location;
 
-//			int borderWidth = (this.Size.Width - this.ClientSize.Width) / 2;
-//			overlayLocation.X += borderWidth;
-//			overlayLocation.Y += (this.Size.Height - this.ClientSize.Height) - borderWidth;
+			int borderWidth = (this.Size.Width - this.ClientSize.Width) / 2;
+			overlayLocation.X += borderWidth;
+			overlayLocation.Y += (this.Size.Height - this.ClientSize.Height) - borderWidth;
 
 			this._isLocationChanged = false;
 			this._overlay.Size = overlaySize;
