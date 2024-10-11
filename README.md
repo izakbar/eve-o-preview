@@ -68,6 +68,7 @@ CCP Grimmi wrote:
 | Track client locations | Determines whether the client's window position should be restored when it is activated or started |
 | Hide preview of active EVE client | Determines whether the thumbnail corresponding to the active EVE client is not displayed |
 | Minimize inactive EVE clients | Allows to auto-minimize inactive EVE clients to save CPU and GPU |
+| Minimize inactive clients Animation| if Minimize Clients is set, this setting will enable window animations (if checked) or disable if unchecked. 
 | Previews always on top | Determines whether EVE client thumbnails should stay on top of all other windows |
 | Hide previews when EVE client is not active | Determines whether all thumbnails should be visible only when an EVE client is active |
 | Unique layout for each EVE client | Determines whether thumbnails positions are different depending on the EVE client being active |
