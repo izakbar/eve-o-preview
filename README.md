@@ -80,6 +80,8 @@ CCP Grimmi wrote:
 | Thumbnail Width | Thumbnails width. Can be set to any value from **100** to **640** points |
 | Thumbnail Height | Thumbnails Height. Can be set to any value from **80** to **400** points |
 | Lock Thumbnail Location | Lock position of thumbnails, preventing misclicks moving your thumbnails |
+| Thumbnail snap to grid | Force thumbnails to snap to defined grid when moved |
+| Snap X / Snap Y| X/Y grid pixels |
 
 #### **Zoom** Tab
 | Option | Description |
