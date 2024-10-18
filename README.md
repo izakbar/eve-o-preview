@@ -243,6 +243,24 @@ If a client does not appear in this list, then it will use the global highlight 
 
 **Hint** For a list of supported colors see: https://docs.microsoft.com/en-us/dotnet/api/system.drawing.color#properties
 
+### Per Client Thumbnail Size
+Would you like to have different clients with different thumbnail sizes ?
+
+EVE-O Preview doesn't provide any GUI to set the these per client overrides as yet. Though, It can be done via editing the configuration file directly. 
+**Note** Don't forget to make a backup copy of the file before editing it.
+
+Open the file using any text editor. find the entry **PerClientThumbnailSize**. Most probably it will look like
+
+    "PerClientThumbnailSize": {
+      "EVE - Example Toon 1": "240, 180",
+      "EVE - Example Toon 2": "200, 100",
+      "EVE": "320, 240"
+    }
+
+You should modify this entry with a list of each of your clients replacing "Example Toon 1", etc with the name of your character. The values on the right represent the size of the thumbnail.
+
+If a client does not appear in this list, then it will use the global thumbnail size by default.
+
 ### Compatibility Mode
 
 This setting allows to enable an alternate thumbnail render. This render doesn't use advanced DWM API to create live previews. Instead it is a screenshot-based render with the following pros and cons:
