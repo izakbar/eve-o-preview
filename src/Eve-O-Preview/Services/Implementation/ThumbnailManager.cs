@@ -207,7 +207,13 @@ namespace EveOPreview.Services
 
 			foreach (IProcessInfo process in addedProcesses)
 			{
-				IThumbnailView view = this._thumbnailViewFactory.Create(process.Handle, process.Title, this._configuration.ThumbnailSize);
+				Size initialSize = this._configuration.ThumbnailSize;
+                if (this._configuration.PerClientThumbnailSize.Any(x => x.Key == process.Title))
+				{
+					initialSize = this._configuration.PerClientThumbnailSize[process.Title];
+                }
+
+                IThumbnailView view = this._thumbnailViewFactory.Create(process.Handle, process.Title, initialSize);
 				view.IsOverlayEnabled = this._configuration.ShowThumbnailOverlays;
 				view.SetFrames(this._configuration.ShowThumbnailFrames);
 				// Max/Min size limitations should be set AFTER the frames are disabled
@@ -407,7 +413,8 @@ namespace EveOPreview.Services
 					if (this.IsManageableThumbnail(view))
 					{
 						view.ThumbnailLocation = this._configuration.GetThumbnailLocation(view.Title, this._activeClient.Title, view.ThumbnailLocation);
-					}
+						view.ThumbnailSize = this._configuration.GetThumbnailSize(view.Title, this._activeClient.Title, view.ThumbnailSize);
+                    }
 
 					view.SetOpacity(this._configuration.ThumbnailOpacity);
 					view.SetTopMost(this._configuration.ShowThumbnailsAlwaysOnTop);

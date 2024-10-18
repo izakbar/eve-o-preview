@@ -35,13 +35,19 @@ namespace EveOPreview.Configuration.Implementation
 				{ "EVE - Example Tackle Toon 3", 3 }
 			};
 
-			this.PerClientActiveClientHighlightColor = new Dictionary<string, Color>
-			{
-				{"EVE - Example Toon 1", Color.Red},
-				{"EVE - Example Toon 2", Color.Green}
-			};
+            this.PerClientActiveClientHighlightColor = new Dictionary<string, Color>
+            {
+                {"EVE - Example Toon 1", Color.Red},
+                {"EVE - Example Toon 2", Color.Green}
+            };
 
-			this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
+            this.PerClientThumbnailSize = new Dictionary<string, Size>
+            {
+                {"EVE - Example Toon 1", new Size(200, 200)},
+                {"EVE - Example Toon 2", new Size(200, 200)}
+            };
+
+            this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
 			this.FlatLayout = new Dictionary<string, Point>();
 			this.ClientLayout = new Dictionary<string, ClientLayout>();
 			this.ClientHotkey = new Dictionary<string, string>();
@@ -116,10 +122,13 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("CycleGroup2ClientsOrder")]
 		public Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
 
-		[JsonProperty("PerClientActiveClientHighlightColor")]
-		public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
+        [JsonProperty("PerClientActiveClientHighlightColor")]
+        public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
 
-		public bool MinimizeToTray { get; set; }
+        [JsonProperty("PerClientThumbnailSize")]
+        public Dictionary<string, Size> PerClientThumbnailSize{ get; set; }
+
+        public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
 
 		[JsonProperty("CompatibilityMode")]
@@ -229,8 +238,13 @@ namespace EveOPreview.Configuration.Implementation
 
 			return this.FlatLayout.TryGetValue(currentClient, out location) ? location : defaultLocation;
 		}
+        public Size GetThumbnailSize(string currentClient, string activeClient, Size defaultSize)
+        {
+			Size sizeOfThumbnail;
+			return this.PerClientThumbnailSize.TryGetValue(currentClient, out sizeOfThumbnail) ? sizeOfThumbnail : defaultSize;
+        }
 
-		public void SetThumbnailLocation(string currentClient, string activeClient, Point location)
+        public void SetThumbnailLocation(string currentClient, string activeClient, Point location)
 		{
 			Dictionary<string, Point> layoutSource;
 
