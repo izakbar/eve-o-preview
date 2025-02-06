@@ -252,7 +252,11 @@ namespace EveOPreview.Presenters
 		private string GetApplicationVersion()
 		{
 			Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
-			return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+			string target = "Windows";
+#if LINUX
+  target = "Linux";
+#endif
+			return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision} {target}";
 		}
 
 		private void ExitApplication()

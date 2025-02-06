@@ -68,6 +68,7 @@ namespace EveOPreview
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
 		}
 
 		private static IApplicationController InitializeApplicationController()
