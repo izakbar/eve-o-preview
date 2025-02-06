@@ -9,3 +9,4 @@ src/*/.vs/
 *.DotSettings
 build/Fody*
 *.vs/
+/Eve-O-Preview-8.0.2.0-Linux
