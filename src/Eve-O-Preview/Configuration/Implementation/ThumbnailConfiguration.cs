@@ -194,8 +194,8 @@ namespace EveOPreview.Configuration.Implementation
 		public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
 		public int ThumbnailResizeTimeoutPeriod { get; set; }
-		
-		[JsonProperty("CompatibilityMode")]
+
+		[JsonProperty("WineCompatibilityMode")]
 		public bool EnableWineCompatibilityMode { get; set; }
 
 		[JsonProperty("ThumbnailsOpacity")]
