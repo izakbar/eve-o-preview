@@ -86,7 +86,11 @@ namespace EveOPreview.Configuration.Implementation
 			this.ThumbnailRefreshPeriod = 500;
 			this.ThumbnailResizeTimeoutPeriod = 500;
 
-			this.EnableCompatibilityMode = false;
+#if LINUX
+			this.EnableWineCompatibilityMode = true;
+#else
+			this.EnableWineCompatibilityMode = false;
+#endif
 
 			this.ThumbnailOpacity = 0.5;
 
@@ -192,7 +196,7 @@ namespace EveOPreview.Configuration.Implementation
 		public int ThumbnailResizeTimeoutPeriod { get; set; }
 		
 		[JsonProperty("CompatibilityMode")]
-		public bool EnableCompatibilityMode { get; set; }
+		public bool EnableWineCompatibilityMode { get; set; }
 
 		[JsonProperty("ThumbnailsOpacity")]
 		public double ThumbnailOpacity { get; set; }
