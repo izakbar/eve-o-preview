@@ -13,11 +13,9 @@ namespace EveOPreview.Services.Implementation
 		private const int NO_ANIMATION = 0;
 		#endregion
 
-#if LINUX
 		#region Private fields
 		private readonly bool _enableWineCompatabilityMode;
 		#endregion
-#endif
 
 		public WindowManager(IThumbnailConfiguration configuration)
 		{

@@ -86,7 +86,11 @@ namespace EveOPreview.Configuration.Implementation
 			this.ThumbnailRefreshPeriod = 500;
 			this.ThumbnailResizeTimeoutPeriod = 500;
 
+#if LINUX
+			this.EnableWineCompatibilityMode = true;
+#else
 			this.EnableWineCompatibilityMode = false;
+#endif
 
 			this.ThumbnailOpacity = 0.5;
 
