@@ -1,20 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6CA62DF3-8589-484C-8BC8-F763CA66BBB1}</ProjectGuid>
+	  <DefineConstants Condition="'$(EVEOTarget)'=='Linux'">LINUX</DefineConstants>
+	  <TargetFramework>net8.0-windows8.0</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EveOPreview</RootNamespace>
     <AssemblyName>EVE-O Preview</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+	  <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,32 +16,23 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>8.0.1.9</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Build;Debug;Release</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\bin</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>..\..\bin</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -70,202 +52,55 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
-  </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <UseWPF>True</UseWPF>
+    <AssemblyVersion>8.0.1.9</AssemblyVersion>
+    <FileVersion>8.0.1.9</FileVersion>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build|AnyCPU'">
     <OutputPath>bin\Build\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO" />
-    <Reference Include="System.Linq.Expressions" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Threading.Tasks" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ApplicationBase\ApplicationController.cs" />
-    <Compile Include="ApplicationBase\ExceptionHandler.cs" />
-    <Compile Include="ApplicationBase\IApplicationController.cs" />
-    <Compile Include="ApplicationBase\IIocContainer.cs" />
-    <Compile Include="ApplicationBase\IPresenterGeneric.cs" />
-    <Compile Include="ApplicationBase\LightInjectContainer.cs" />
-    <Compile Include="ApplicationBase\Presenter.cs" />
-    <Compile Include="ApplicationBase\PresenterGeneric.cs" />
-    <Compile Include="Configuration\Implementation\AppConfig.cs" />
-    <Compile Include="Configuration\Implementation\ConfigurationStorage.cs" />
-    <Compile Include="Configuration\Interface\AnimationStyle.cs" />
-    <Compile Include="Configuration\Interface\IAppConfig.cs" />
-    <Compile Include="Configuration\Interface\IThumbnailConfiguration.cs" />
-    <Compile Include="Configuration\Interface\ZoomAnchor.cs" />
-    <Compile Include="Mediator\Handlers\Configuration\SaveConfigurationHandler.cs" />
-    <Compile Include="Mediator\Handlers\Thumbnails\ThumbnailFrameSettingsUpdatedHandler.cs" />
-    <Compile Include="Mediator\Handlers\Thumbnails\ThumbnailConfiguredSizeUpdatedHandler.cs" />
-    <Compile Include="Mediator\Handlers\Thumbnails\ThumbnailListUpdatedHandler.cs" />
-    <Compile Include="Mediator\Messages\Thumbnails\ThumbnailFrameSettingsUpdated.cs" />
-    <Compile Include="Mediator\Messages\Thumbnails\ThumbnailConfiguredSizeUpdated.cs" />
-    <Compile Include="Mediator\Messages\Thumbnails\ThumbnailListUpdated.cs" />
-    <Compile Include="Mediator\Handlers\Thumbnails\ThumbnailLocationUpdatedHandler.cs" />
-    <Compile Include="Mediator\Handlers\Thumbnails\ThumbnailActiveSizeUpdatedHandler.cs" />
-    <Compile Include="Mediator\Handlers\Services\StartStopServiceHandler.cs" />
-    <Compile Include="Mediator\Messages\Base\NotificationBase.cs" />
-    <Compile Include="Mediator\Messages\Configuration\SaveConfiguration.cs" />
-    <Compile Include="Mediator\Messages\Services\StartService.cs" />
-    <Compile Include="Mediator\Messages\Services\StopService.cs" />
-    <Compile Include="Mediator\Messages\Thumbnails\ThumbnailLocationUpdated.cs" />
-    <Compile Include="Mediator\Messages\Thumbnails\ThumbnailActiveSizeUpdated.cs" />
-    <Compile Include="Presenters\Implementation\ViewAnimationStyleConverter.cs" />
-    <Compile Include="Presenters\Interface\IMainFormPresenter.cs" />
-    <Compile Include="Services\Implementation\ProcessInfo.cs" />
-    <Compile Include="Services\Implementation\ProcessMonitor.cs" />
-    <Compile Include="Services\Interface\IProcessInfo.cs" />
-    <Compile Include="Services\Interface\IProcessMonitor.cs" />
-    <Compile Include="Services\Implementation\DwmThumbnail.cs" />
-    <Compile Include="Services\Interface\IDwmThumbnail.cs" />
-    <Compile Include="Services\Interface\InteropConstants.cs" />
-    <Compile Include="Services\Interop\ANIMATIONINFO.cs" />
-    <Compile Include="Services\Interop\DWM_BLURBEHIND.cs" />
-    <Compile Include="Services\Interop\DWM_THUMBNAIL_PROPERTIES.cs" />
-    <Compile Include="Services\Interop\DWM_TNP_CONSTANTS.cs" />
-    <Compile Include="Services\Interface\IWindowManager.cs" />
-    <Compile Include="Services\Interop\Gdi32NativeMethods.cs" />
-    <Compile Include="Services\Interop\MARGINS.cs" />
-    <Compile Include="Services\Interop\RECT.cs" />
-    <Compile Include="Configuration\Interface\ClientLayout.cs" />
-    <Compile Include="ApplicationBase\IPresenter.cs" />
-    <Compile Include="Services\Implementation\WindowManager.cs" />
-    <Compile Include="Services\Interop\User32NativeMethods.cs" />
-    <Compile Include="Presenters\Implementation\MainFormPresenter.cs" />
-    <Compile Include="Presenters\Interface\ViewCloseRequest.cs" />
-    <Compile Include="Presenters\Implementation\ViewZoomAnchorConverter.cs" />
-    <Compile Include="Services\Interop\WINDOWPLACEMENT.cs" />
-    <Compile Include="View\Implementation\LiveThumbnailView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Implementation\StaticThumbnailImage.cs">
+    <Compile Update="View\Implementation\StaticThumbnailImage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="View\Implementation\StaticThumbnailView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Interface\IThumbnailViewFactory.cs" />
-    <Compile Include="Services\Interface\IThumbnailManager.cs" />
-    <Compile Include="View\Implementation\ThumbnailDescription.cs" />
-    <Compile Include="View\Interface\IMainFormView.cs" />
-    <Compile Include="ApplicationBase\IView.cs" />
-    <Compile Include="View\Interface\IThumbnailDescription.cs" />
-    <Compile Include="View\Interface\ViewAnimationStyle.cs" />
-    <Compile Include="View\Interface\ViewZoomAnchor.cs" />
-    <Compile Include="Configuration\Implementation\ThumbnailConfiguration.cs" />
-    <Compile Include="Hotkeys\HotkeyHandler.cs" />
-    <Compile Include="Hotkeys\HotkeyHandlerNativeMethods.cs" />
-    <Compile Include="View\Implementation\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Implementation\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\Interface\IConfigurationStorage.cs" />
-    <Compile Include="View\Interface\IThumbnailView.cs" />
-    <Compile Include="View\Implementation\ThumbnailViewFactory.cs" />
-    <Compile Include="Services\Implementation\ThumbnailManager.cs" />
-    <Compile Include="View\Implementation\ThumbnailOverlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Implementation\ThumbnailOverlay.Designer.cs">
-      <DependentUpon>ThumbnailOverlay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\Implementation\MainForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Implementation\ThumbnailOverlay.resx">
-      <DependentUpon>ThumbnailOverlay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Implementation\ThumbnailView.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ThumbnailView.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="View\Implementation\ThumbnailView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Implementation\ThumbnailView.Designer.cs">
-      <DependentUpon>ThumbnailView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Services\Interop\DwmNativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <EmbeddedResource Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FodyWeavers.xml" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>3.3.2</Version>
-    </PackageReference>
+      <Version>6.0.0</Version>
+      <PrivateAssets>all</PrivateAssets>
+	</PackageReference>
     <PackageReference Include="Fody">
-      <Version>4.0.2</Version>
+      <Version>6.9.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="LightInject">
-      <Version>6.4.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="MediatR">
       <Version>9.0.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.ValueTuple">
-      <Version>4.5.0</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -280,12 +115,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Compile Remove="AboutBox.cs" />
+    <Compile Remove="AboutBox.Designer.cs" />
+    <EmbeddedResource Remove="AboutBox.resx" />
+  </ItemGroup>
 </Project>
