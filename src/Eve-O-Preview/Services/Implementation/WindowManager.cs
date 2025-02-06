@@ -13,8 +13,17 @@ namespace EveOPreview.Services.Implementation
 		private const int NO_ANIMATION = 0;
 		#endregion
 
-		public WindowManager()
+#if LINUX
+		#region Private fields
+		private readonly bool _enableWineCompatabilityMode;
+		#endregion
+#endif
+
+		public WindowManager(IThumbnailConfiguration configuration)
 		{
+#if LINUX
+			this._enableWineCompatabilityMode = configuration.EnableWineCompatibilityMode;
+#endif
 			// Composition is always enabled for Windows 8+
 			this.IsCompositionEnabled = 
 				((Environment.OSVersion.Version.Major == 6) && (Environment.OSVersion.Version.Minor >= 2)) // Win 8 and Win 8.1
@@ -61,7 +70,53 @@ namespace EveOPreview.Services.Implementation
 			}
 		}
 
+// if building for LINUX the window handling is slightly different
+#if LINUX
+		private void WineActivateWindow(string windowName)
+		{
+			// On Wine it is not possible to manipulate windows directly.
+			// They are managed by native Window Manager
+			// So a separate command-line utility is used
+			if (string.IsNullOrEmpty(windowName))
+			{
+				return;
+			}
 
+			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
+			System.Diagnostics.Process.Start("/bin/bash", cmd);
+		}
+
+        public void ActivateWindow(IntPtr handle, string windowName)
+        {
+            if (this._enableWineCompatabilityMode)
+            {
+                this.WineActivateWindow(windowName);
+            }
+            else
+            {
+                this.WindowsActivateWindow(handle);
+            }
+        }
+
+        public void MinimizeWindow(IntPtr handle, bool enableAnimation)
+		{
+			if (enableAnimation)
+			{
+				User32NativeMethods.SendMessage(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
+			}
+			else
+			{
+				WINDOWPLACEMENT param = new WINDOWPLACEMENT();
+				param.length = Marshal.SizeOf(typeof(WINDOWPLACEMENT));
+				User32NativeMethods.GetWindowPlacement(handle, ref param);
+				param.showCmd = WINDOWPLACEMENT.SW_MINIMIZE;
+				User32NativeMethods.SetWindowPlacement(handle, ref param);
+			}
+		}
+
+#endif
+
+#if WINDOWS
 		public void ActivateWindow(IntPtr handle, AnimationStyle animation)
 		{
 			User32NativeMethods.SetForegroundWindow(handle);
@@ -120,6 +175,7 @@ namespace EveOPreview.Services.Implementation
 				}
 			}
 		}
+#endif
 
 		public void MoveWindow(IntPtr handle, int left, int top, int width, int height)
 		{
