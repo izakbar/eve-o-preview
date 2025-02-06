@@ -68,8 +68,21 @@ namespace EveOPreview.Services.Implementation
 			}
 		}
 
-// if building for LINUX the window handling is slightly different
+		// if building for LINUX the window handling is slightly different
 #if LINUX
+		private void WindowsActivateWindow(IntPtr handle)
+		{
+			User32NativeMethods.SetForegroundWindow(handle);
+			User32NativeMethods.SetFocus(handle);
+
+			int style = User32NativeMethods.GetWindowLong(handle, InteropConstants.GWL_STYLE);
+
+			if ((style & InteropConstants.WS_MINIMIZE) == InteropConstants.WS_MINIMIZE)
+			{
+				User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
+			}
+		}
+
 		private void WineActivateWindow(string windowName)
 		{
 			// On Wine it is not possible to manipulate windows directly.
