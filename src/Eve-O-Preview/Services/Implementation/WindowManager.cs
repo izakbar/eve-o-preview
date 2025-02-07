@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using EveOPreview.Configuration;
 using EveOPreview.Services.Interop;
@@ -17,10 +18,26 @@ namespace EveOPreview.Services.Implementation
 		private readonly bool _enableWineCompatabilityMode;
 		#endregion
 
+
+		public void LogWriter(string logitem)
+		{
+			try
+			{
+				using (StreamWriter w = File.AppendText("EVE-O-Pregion.debug"))
+				{
+					w.WriteLine(logitem);
+				}
+			}
+			catch (Exception ex)
+			{
+			}
+		}
+
 		public WindowManager(IThumbnailConfiguration configuration)
 		{
 #if LINUX
 			this._enableWineCompatabilityMode = configuration.EnableWineCompatibilityMode;
+			LogWriter($"Set WineCompatabilityMode {this._enableWineCompatabilityMode}");
 #endif
 			// Composition is always enabled for Windows 8+
 			this.IsCompositionEnabled = 
@@ -72,9 +89,7 @@ namespace EveOPreview.Services.Implementation
 #if LINUX
 		private void WindowsActivateWindow(IntPtr handle)
 		{
-			Console.Beep(3000, 100);
-			Console.Beep(2000, 100);
-			Console.Beep(1000, 100);
+			LogWriter($"LINUX WindowsActivateWindow");
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
 
@@ -88,6 +103,7 @@ namespace EveOPreview.Services.Implementation
 
 		private void WineActivateWindow(string windowName)
 		{
+			LogWriter($"LINUX WineActivateWindow");
 			// On Wine it is not possible to manipulate windows directly.
 			// They are managed by native Window Manager
 			// So a separate command-line utility is used
@@ -102,10 +118,10 @@ namespace EveOPreview.Services.Implementation
 
         public void ActivateWindow(IntPtr handle, string windowName)
         {
+			LogWriter($"LINUX ActivateWindow");
             if (this._enableWineCompatabilityMode)
             {
                 this.WineActivateWindow(windowName);
-                this.WindowsActivateWindow(handle);
             }
             else
             {
@@ -115,6 +131,7 @@ namespace EveOPreview.Services.Implementation
 
         public void MinimizeWindow(IntPtr handle, bool enableAnimation)
 		{
+			LogWriter($"LINUX MinimizeWindow");
 			if (enableAnimation)
 			{
 				User32NativeMethods.SendMessage(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
