@@ -113,6 +113,7 @@ namespace EveOPreview.Services.Implementation
 			}
 
 			var cmd = "-c \"/usr/bin/wmctrl -a \"\"" + windowName + "\"\"\"";
+			LogWriter($"Calling /bin/bash {cmd}");
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 
