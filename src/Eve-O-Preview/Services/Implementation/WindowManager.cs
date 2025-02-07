@@ -102,6 +102,7 @@ namespace EveOPreview.Services.Implementation
             if (this._enableWineCompatabilityMode)
             {
                 this.WineActivateWindow(windowName);
+                this.WindowsActivateWindow(handle);
             }
             else
             {
