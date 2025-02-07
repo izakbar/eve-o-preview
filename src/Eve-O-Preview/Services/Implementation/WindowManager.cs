@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using EveOPreview.Configuration;
 using EveOPreview.Services.Interop;
+using System.Windows.Forms;
 
 namespace EveOPreview.Services.Implementation
 {
@@ -94,7 +95,7 @@ namespace EveOPreview.Services.Implementation
 			}
 
 			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
-MessageBox.Show(ExceptionHandler.EXCEPTION_MESSAGE, $"EVE-O Preview $cmd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+MessageBox.Show($"EVE-O Preview" , $"{cmd}", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
