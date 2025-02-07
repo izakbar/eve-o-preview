@@ -94,6 +94,8 @@ namespace EveOPreview.Services.Implementation
 			}
 
 			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
+MessageBox.Show(ExceptionHandler.EXCEPTION_MESSAGE, $"EVE-O Preview $cmd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 
@@ -101,7 +103,7 @@ namespace EveOPreview.Services.Implementation
         {
             if (this._enableWineCompatabilityMode)
             {
-                this.WineActivateWindow(windowName);
+                this.WindowsActivateWindow(handle);
             }
             else
             {
