@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -110,8 +111,11 @@ namespace EveOPreview.Services
 		public void SetActive(KeyValuePair<IntPtr, IThumbnailView> newClient)
 		{
 			this.GetActiveClient()?.ClearBorder();
-
+#if LINUX
+			this._windowManager.ActivateWindow(newClient.Key, newClient.Value.Title);
+#else
 			this._windowManager.ActivateWindow(newClient.Key, this._configuration.WindowsAnimationStyle);
+#endif
 			this.SwitchActiveClient(newClient.Key, newClient.Value.Title);
 
 			newClient.Value.SetHighlight();
@@ -596,7 +600,11 @@ namespace EveOPreview.Services
 
 			Task.Run(() =>
 				{
+#if LINUX
+					this._windowManager.ActivateWindow(view.Id, view.Title);
+#else
 					this._windowManager.ActivateWindow(view.Id, this._configuration.WindowsAnimationStyle);
+#endif
 				})
 				.ContinueWith((task) =>
 				{
@@ -611,7 +619,11 @@ namespace EveOPreview.Services
 		{
 			if (switchOut)
 			{
+#if LINUX
+				this._windowManager.ActivateWindow(this._externalApplication, null);
+#else
 				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.WindowsAnimationStyle);
+#endif
 			}
 			else
 			{
