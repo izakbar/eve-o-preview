@@ -72,6 +72,9 @@ namespace EveOPreview.Services.Implementation
 #if LINUX
 		private void WindowsActivateWindow(IntPtr handle)
 		{
+			Console.Beep(3000, 100);
+			Console.Beep(2000, 100);
+			Console.Beep(1000, 100);
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
 
@@ -91,13 +94,10 @@ namespace EveOPreview.Services.Implementation
 			if (string.IsNullOrEmpty(windowName))
 			{
 				return;
-				Console.Beep(5000, 1000);
-
 			}
 
 			var cmd = "-c \"/usr/bin/wmctrl -a \"\"" + windowName + "\"\"\"";
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
-			Console.Beep();
 		}
 
         public void ActivateWindow(IntPtr handle, string windowName)
@@ -134,6 +134,9 @@ namespace EveOPreview.Services.Implementation
 #if WINDOWS
 		public void ActivateWindow(IntPtr handle, AnimationStyle animation)
 		{
+			Console.Beep(1000, 100);
+			Console.Beep(2000, 100);
+			Console.Beep(3000, 100);
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
 
