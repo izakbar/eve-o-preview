@@ -91,10 +91,13 @@ namespace EveOPreview.Services.Implementation
 			if (string.IsNullOrEmpty(windowName))
 			{
 				return;
+				Console.Beep(5000, 1000);
+
 			}
 
 			var cmd = "-c \"/usr/bin/wmctrl -a \"\"" + windowName + "\"\"\"";
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
+			Console.Beep();
 		}
 
         public void ActivateWindow(IntPtr handle, string windowName)
