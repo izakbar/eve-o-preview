@@ -132,9 +132,6 @@ namespace EveOPreview.Services.Implementation
 #if WINDOWS
 		public void ActivateWindow(IntPtr handle, AnimationStyle animation)
 		{
-			Console.Beep(1000, 100);
-			Console.Beep(2000, 100);
-			Console.Beep(3000, 100);
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
 
