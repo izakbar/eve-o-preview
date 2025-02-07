@@ -19,25 +19,10 @@ namespace EveOPreview.Services.Implementation
 		#endregion
 
 
-		public void LogWriter(string logitem)
-		{
-			try
-			{
-				using (StreamWriter w = File.AppendText("EVE-O-Pregion.debug"))
-				{
-					w.WriteLine(logitem);
-				}
-			}
-			catch (Exception ex)
-			{
-			}
-		}
-
 		public WindowManager(IThumbnailConfiguration configuration)
 		{
 #if LINUX
 			this._enableWineCompatabilityMode = configuration.EnableWineCompatibilityMode;
-			LogWriter($"Set WineCompatabilityMode {this._enableWineCompatabilityMode}");
 #endif
 			// Composition is always enabled for Windows 8+
 			this.IsCompositionEnabled = 
@@ -89,7 +74,6 @@ namespace EveOPreview.Services.Implementation
 #if LINUX
 		private void WindowsActivateWindow(IntPtr handle)
 		{
-			LogWriter($"LINUX WindowsActivateWindow");
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
 
@@ -103,7 +87,6 @@ namespace EveOPreview.Services.Implementation
 
 		private void WineActivateWindow(string windowName)
 		{
-			LogWriter($"LINUX WineActivateWindow");
 			// On Wine it is not possible to manipulate windows directly.
 			// They are managed by native Window Manager
 			// So a separate command-line utility is used
@@ -112,14 +95,12 @@ namespace EveOPreview.Services.Implementation
 				return;
 			}
 
-			var cmd = "-c \"/usr/bin/wmctrl -a \"\"" + windowName + "\"\"\"";
-			LogWriter($"Calling /bin/bash {cmd}");
+			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 
         public void ActivateWindow(IntPtr handle, string windowName)
         {
-			LogWriter($"LINUX ActivateWindow");
             if (this._enableWineCompatabilityMode)
             {
                 this.WineActivateWindow(windowName);
@@ -132,7 +113,6 @@ namespace EveOPreview.Services.Implementation
 
         public void MinimizeWindow(IntPtr handle, bool enableAnimation)
 		{
-			LogWriter($"LINUX MinimizeWindow");
 			if (enableAnimation)
 			{
 				User32NativeMethods.SendMessage(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
