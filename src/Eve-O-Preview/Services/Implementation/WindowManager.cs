@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using EveOPreview.Configuration;
 using EveOPreview.Services.Interop;
-using System.Windows.Forms;
 
 namespace EveOPreview.Services.Implementation
 {
@@ -94,9 +93,7 @@ namespace EveOPreview.Services.Implementation
 				return;
 			}
 
-			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
-MessageBox.Show($"EVE-O Preview" , $"{cmd}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+			var cmd = "-c \"/usr/bin/wmctrl -a \"\"" + windowName + "\"\"\"";
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 
@@ -104,7 +101,7 @@ MessageBox.Show($"EVE-O Preview" , $"{cmd}", MessageBoxButtons.OK, MessageBoxIco
         {
             if (this._enableWineCompatabilityMode)
             {
-                this.WindowsActivateWindow(handle);
+                this.WineActivateWindow(windowName);
             }
             else
             {
