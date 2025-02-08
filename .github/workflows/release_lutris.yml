@@ -17,7 +17,7 @@ jobs:
         echo "EVE_O_PREVIEW=https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/Release-${{github.event.release.tag_name}}-Linux.zip" >> $GITHUB_ENV
     
     - name: Substitute variables in eve-o-preview.yaml
-      uses: izakbar/variable-substitution
+      uses: microsoft/variable-substitution@v1
       with:
         files: |
           ./src/eve-o-preview.yaml
