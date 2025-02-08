@@ -8,7 +8,7 @@ script:
   - setup:
       filename: installer.exe
       url: https://launcher.ccpgames.com/eve-online/release/win32/x64/eve-online-latest+Setup.exe
-  - eve-o-preview: $(EVE_O_PREVIEW)
+  - eve-o-preview: ${{EVE_O_PREVIEW}}
   - wine: https://github.com/Kron4ek/Wine-Builds/releases/download/10.0/wine-10.0-staging-amd64.tar.xz
   - winetricks: https://raw.githubusercontent.com/Winetricks/winetricks/refs/tags/20240105/src/winetricks
   - dotnet8:  https://download.visualstudio.microsoft.com/download/pr/f1e7ffc8-c278-4339-b460-517420724524/f36bb75b2e86a52338c4d3a90f8dac9b/windowsdesktop-runtime-8.0.12-win-x64.exe
