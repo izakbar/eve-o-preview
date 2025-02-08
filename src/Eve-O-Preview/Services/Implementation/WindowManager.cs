@@ -95,7 +95,16 @@ namespace EveOPreview.Services.Implementation
 				return;
 			}
 
-			var cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
+            string? cmd = null;
+            // If we are in a flatpak, then use flatpak-spawn to run wmctrl outside the sandbox
+            if (Environment.GetEnvironmentVariable("container") == "flatpak")
+            {
+                cmd = "-c \"flatpak-spawn --host wmctrl -a \"\"" + windowName + "\"\"\"";
+            } 
+            else 
+            {
+                cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
+            }
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 
