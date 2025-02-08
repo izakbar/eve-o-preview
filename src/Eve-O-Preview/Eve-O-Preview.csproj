@@ -4,7 +4,7 @@
 	  <TargetFramework>net8.0-windows8.0</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EveOPreview</RootNamespace>
-    <AssemblyName>EVE-O Preview</AssemblyName>
+    <AssemblyName>EVE-O-Preview</AssemblyName>
 	  <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

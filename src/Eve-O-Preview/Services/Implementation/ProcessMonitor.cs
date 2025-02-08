@@ -9,7 +9,7 @@ namespace EveOPreview.Services.Implementation
 	{
 		#region Private constants
 		private const string DEFAULT_PROCESS_NAME = "ExeFile";
-		private const string CURRENT_PROCESS_NAME = "EVE-O Preview";
+		private const string CURRENT_PROCESS_NAME = "EVE-O-Preview";
 		#endregion
 
 		#region Private fields
