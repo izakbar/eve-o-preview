@@ -1,4 +1,4 @@
-name: Eve-O Preview Release - lutris script
+name: Eve-O Preview Release - PDF generator
 
 on:
   release:
