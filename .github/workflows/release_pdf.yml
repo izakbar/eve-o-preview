@@ -1,0 +1,29 @@
+name: Eve-O Preview Release - lutris script
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  edit-config:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+   
+    - name: Generate PDF Document
+      uses: shrink/actions-document-publish@v1
+      id: publish-document
+      with:
+        sources: 'README.md'
+
+    - name: Publish PDF Document
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ steps.publish-document.outputs.pdf }}
+          asset_name: "Eve-O-Preview.pdf"
+          asset_content_type: application/pdf
