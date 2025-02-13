@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Linux, os: windows-2022, self_contained: false }
-        - { name: Windows, os: windows-2022, self_contained: true }
+        - { name: Linux, os: windows-2022, self_contained: true }
+        - { name: Windows, os: windows-2022, self_contained: false }
         dotnet:
         - { name: .NET 8, version: '8.0.x' }
 
